@@ -1,0 +1,68 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"> Angular CRUD</a>
+</nav>
+
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-8">
+      <ul class="list-group">
+        <!-- loop to iterate the class person declared in the app.component.ts -->
+        <li
+          *ngFor="let game of gameArray"
+          class="list-group-item list-group-item-action"
+          (click)="selectToEdit(game)"
+          [class.active]="game == selectedGame"
+        >
+          <span class="badge badge-secondary mr-2">{{ game.id }}</span
+          >{{ game.name }} - Category: {{ game.category }} - Players:{{
+            game.players
+          }}
+        </li>
+      </ul>
+      <div>
+        <div class="card mt-2">
+          <div class="card-body">
+            <div class="card-title">
+              Insert a new game
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                [(ngModel)]="selectedGame.name"
+                placeholder="insert a Game"
+                class="form-control"
+              />
+              <input
+                type="text"
+                [(ngModel)]="selectedGame.category"
+                placeholder="insert a category"
+                class="form-control"
+              />
+              <input
+                type="text"
+                [(ngModel)]="selectedGame.players"
+                placeholder="insert number of players"
+                class="form-control"
+              />
+              <button (click)="addOrEdit()" class="btn btn-secondary mt-2">
+                Submit
+              </button>
+              <!-- only shows this button if a existing game is selected -->
+              <button *ngIf="selectedGame.id !== 0"(click)="delete()" class="btn btn-danger mt-2 ml-2">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <img
+        width="300"
+        height="200"
+        alt="Angular Logo"
+        src="https://www.bilbokokonpartsak.eus/wp/wp-content/uploads/2011/08/warhammerfantasy.png"
+      />
+    </div>
+  </div>
+</div>
